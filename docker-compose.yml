@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    depends_on: [zookeeper] #Le dice a docker compose que no corra kafka sin antes haber inicializado zookeper, dado que kafka no funciona si no está zookeper activo.
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1 #Normalmente kafka replica la data por multiples brokers para tener una tolerancia al fallo, se pone uno para evitar errores de inicialización
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092 #Esta línea indica al cliente donde debe conectarse, en un ambiente real, es un host o IP no localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  postgres:
+    image: postgres:15
+    ports:
+      - "5432:5432" #El puerto de postgres dentro del contenedor es 5432 y conecta al nuestro local que definimos con 5432 para que python se conecte con postrges,
+    environment:
+      POSTGRES_USER: pipeline
+      POSTGRES_PASSWORD: pipeline
+      POSTGRES_DB: sales

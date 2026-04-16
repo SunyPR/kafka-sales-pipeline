@@ -1,0 +1,5 @@
+kafka-python #nos da las clases KafkaProducer y KafkaConsumer que usaremos
+faker #Genera data falsa pero realista para simular un flujo stream de ordenes sin backend real
+psycopg2-binary #librería para que python ejecute queries en postgres, binary indica que compilcaciones en c
+                #añadidas lo que ahorra la instalación necesaria de postgres.
+#install with: pip install -r requirements.txt
