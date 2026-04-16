@@ -84,6 +84,7 @@ python transformer.py
 ## 📬 Author
 
 **Suny Ricarte Ramírez Pérez**
+
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/suny-ricarte-ramirez-perez-8a630b24b)
 
 ---
